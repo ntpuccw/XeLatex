@@ -1,0 +1,91 @@
+%---置入定義檔 ----------------------------------
+\input{Book_preamble_Book}  									
+\usepackage{wallpaper} %浮水印
+\URCornerWallPaper{0.25}{\imgdir{圖片2.jpg}}   %來自package wallpaper %0.8圖片大小
+% 啟動索引製作，(1) 配合 \usepackage{makeidx} 使用，
+%                      (2) 在文件 \begin{document} 前加入 \makeindex
+%                      (3) 在文件最後要印出索引的地方加入 \printondex
+%                      (4) 在文章中欲編入索引的文字後加上 \index{該文字}
+%                      (5) 編譯時加入 makeindex 一至兩次
+				
+%----文件開始-------------------------------------
+\begin{document}
+%---封面製作 ------------------------------------
+%\ThisURCornerWallPaper{-1}{\imgdir{ntpu.eps}}
+\thispagestyle{empty} %不要其他東西 ex浮水印
+\fontsize{40}{30pt}\selectfont
+\begin{flushleft}
+    \bigskip\bigskip\bigskip\bigskip\bigskip\bigskip
+    {\CB \XeLaTeX }\\    
+    \smallskip{\color{slight2}{\CB 使用介紹}}\\
+    \rule{3in}{0.2pt}\\
+    \bigskip\LARGE {\MB 游筑鈞}\;\;410578049\rule{8mm}{0pt}\\
+    \bigskip\par\small\today\rule{8mm}{0pt}
+\end{flushleft}
+\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip
+\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip\bigskip
+
+
+\begin{overpic}[scale=0.75]{\imgdir{圖片1.jpg}}
+    \centering
+    %\put(20,52){\color{slight}{\bf L}}
+    %\put(30,40){\color{slight}{\bf A}}
+    %\put(40,30){\color{slight}{\bf T}}
+    %\put(40,40){\color{slight}{\bf E}}
+\end{overpic}
+
+
+
+    
+\fontsize{12}{22pt}\selectfont
+
+%--- 製作目錄 -----------------------------------
+\newpage
+\pagenumbering{roman}  % 羅馬文頁碼
+\cleardoublepage %機樹葉 開始 偶數業 空
+\setcounter{tocdepth}{2} % 目錄層次
+
+\tableofcontents
+
+\newpage
+\renewcommand{\numberline}[1]{\loflabel~#1\hspace*{1em}}% 圖目錄出現 圖 x.x 的「圖」字
+\listoffigures %圖目錄
+\newpage
+\renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}% 表目錄出現 表 x.x 的「表」字
+\listoftables % 表目錄
+\newpage
+%--- 放入各章 -----------------------------------
+%\include{Book_preface_1} % 序言
+%\include{Book_preface_2}% 序言
+\ifodd\count0 \else \thispagestyle{empty}\mbox{}\clearpage\fi % 如果是偶數頁就呈現空白頁
+\include{Book_preface_1}
+\pagenumbering{arabic} % 阿拉伯文頁碼
+\setcounter{page}{1} % 第一章 從第 1 頁開始
+
+\include{WORK1_MATH}
+\include{work2_table}
+\include{work2_graph}
+
+
+%\include{Book_counter}
+%\include{Book_bibtex}
+%-------Reference--------------------------------------------------------------------------------------------
+%\bibliographystyle{amsplain}
+%\bibliographystyle{plain}
+
+%\bibliographystyle{abbrvnat}
+%\bibliographystyle{unsrtnat}
+%\bibliographystyle{apacite}   
+%\renewcommand\bibname{}
+\addcontentsline{toc}{chapter}{\CB{參考文獻}} %加入目錄
+\chapter*{\CB{參考文獻引用}} %製作標題
+
+本書中關於\LaTeX 的排版技巧，參考\cite{CW}，內容關於數學公式及統計定理的部分參考\cite{LW}。希望透過課堂所學，真實的用\LaTeX 來呈現。
+\begin{thebibliography}{99} % 99 代表最多 99 個項目
+\bibitem{LW}
+Larry Wasserman,A Concise Course in Statistical Inference,New York:Srring,2004.
+\bibitem{CW}
+吳聰敏．吳聰慧,cwTEX排版系統,翰蘆圖書出版有限公司,2005.
+\end{thebibliography}
+
+\end{document}

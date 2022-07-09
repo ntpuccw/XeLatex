@@ -1,0 +1,71 @@
+%\documentclass[14pt, handout]{beamer} 		% for print 
+\documentclass[12pt]{beamer} 					% for projector
+%- begin of Beamer setting--------------------------------------
+%\setbeamercovered{transparent}
+\usetheme{Malmoe}
+%\usetheme{Darmstadt}
+%\usetheme[secheader]{Boadilla}
+\usecolortheme{dolphin}
+\usefonttheme{structurebold}
+%\usefonttheme{professionalfonts}
+%\useoutertheme{miniframes}					% 外觀上層增加點選的連結
+%\useoutertheme{infolines}
+\usepackage{xmpmulti}
+\linespread{1.2}
+\newenvironment{num}							% 新定義的項目符號
+ {\leftmargini=6mm\leftmarginii=8mm
+  \begin{itemize}}{\end{itemize}}
+%- end of Beamer setting------------------------------------------
+
+\usepackage{fontspec} 						% Font selection for XeLaTeX; 
+%\usepackage[BoldFont, SlantFont]{xeCJK}		% 中文使用 XeCJK，並模擬粗體與斜體）
+\usepackage{xeCJK}							% 利用 \setCJKmainfont 定義粗體與斜體的字型
+\defaultfontfeatures{Mapping=tex-text} 		% to support TeX conventions like ``---''
+\usepackage{xunicode} 						% Unicode support for LaTeX character names (accents, European chars, etc)
+\usepackage{xltxtra} 						% Extra customizations for XeLaTeX
+\usepackage{amsmath, amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx, subfig, float} 			% support the \includegraphics command and options
+\usepackage{array, booktabs}
+\usepackage{color, xcolor}
+\usepackage{longtable}
+\usepackage{colortbl}                          				
+%-----------------------------------------------------------------------------------------------------------------------
+%  主字型設定
+\setCJKmainfont
+	[
+		BoldFont=微軟正黑體			% 定義粗體的字型（依使用的電腦安裝的字型而定）
+	]
+	{新細明體}						% 設定中文內文字型
+
+\setmainfont{Times New Roman}			% 設定英文內文字型
+\setsansfont{Arial}					% used with {\sffamily ...}
+%\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont{Courier New}			% used with {\ttfamily ...}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+% 其他字型（隨使用的電腦安裝的字型不同，用註解的方式調整（打開或關閉））
+% 英文字型
+\newfontfamily{\E}{Cambria}				% 套用在內文中所有的英文字母
+\newfontfamily{\A}{Arial}
+%\newfontfamily{\C}[Scale=0.9]{Cambria}
+\newfontfamily{\R}{Times New Roman}
+\newfontfamily{\TT}[Scale=0.8]{Times New Roman}
+% 中文字型
+\newCJKfontfamily{\MB}{微軟正黑體}				% 適用在 Mac 與 Win
+\newCJKfontfamily{\SM}[Scale=0.8]{新細明體}	% 縮小版
+%\newCJKfontfamily{\K}{標楷體}                	% Windows 下的標楷體
+% 自行安裝的字體
+%\newCJKfontfamily{\CF}{cwTeX Q Fangsong Medium}	% CwTex 仿宋體
+%\newCJKfontfamily{\CB}{cwTeX Q Hei Bold}			% CwTex 粗黑體
+%\newCJKfontfamily{\CK}{cwTeX Q Kai Medium}   	% CwTex 楷體
+%\newCJKfontfamily{\CM}{cwTeX Q Ming Medium}		% CwTex 明體
+%\newCJKfontfamily{\CR}{cwTeX Q Yuan Medium}		% CwTex 圓體
+%-----------------------------------------------------------------------------------------------------------------------
+\XeTeXlinebreaklocale "zh"                  		%這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     			%這兩行一定要加，中文才能自動換行
+%-----------------------------------------------------------------------------------------------------------------------
+\newcommand{\cw}{\texttt{cw}\kern-.6pt\TeX}	% 這是 cwTex 的 logo 文字
+\newcommand{\imgdir}{images/}					% 設定圖檔的位置
+\renewcommand{\tablename}{表}					% 改變表格標號文字為中文的「表」（預設為 Table）
+\renewcommand{\figurename}{圖}				% 改變圖片標號文字為中文的「圖」（預設為 Figure）
+\definecolor{slight}{gray}{0.9}				% 設定顏色

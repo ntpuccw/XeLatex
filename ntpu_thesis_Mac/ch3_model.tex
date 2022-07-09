@@ -1,0 +1,67 @@
+%\include{preamble}
+%\title{第3章 \\ 二元長期追蹤資料之平均反應模型}
+%\date{}
+%\author{}
+%\begin{document}
+%\maketitle
+
+\chapter{二元長期追蹤資料之平均反應模型}\label{ch:model}
+
+\section{邊際模型與 MLE}\label{sec:mle}
+\noindent 在已知隨機變數分配的情況下,邊際模型將可藉由最大概似估計法來估計參數。假設二元隨機變數服從第 \ref{ch:dist} 章所提的多變量二元分配(\ref{equ:jpmf}),
+故在GLM之邏吉斯模型架構下,已知時間點 $t$ 試驗結果,時間點 $t+1$ 之平均反應模型為
+\begin{align}\label{equ:regf}
+    \mbox{logit}\left[\mbox{E}(Y_{i,t+1}=1 \,|\,Y_{it}=y_{it})\right] &=\bm{x}'_{i,t+1}\bm{\beta}+\gamma_t\, y_{it},\;\;t=1,\cdots,k-1,
+\end{align}
+其中, $\gamma_t$ 係配合聯合機率密度函數中的一階馬可夫鏈假設,用以解釋時間 $t$ 與 $t+1$ 間關係之參數。
+此時,條件機率可表示如下:
+\begin{align}\label{equ:wcovf2}
+    f(y_{i,t+1}\,|\, y_{it} \,;\bm{x}_{i,t+1}) &= \frac{\exp[y_{i,t+1}(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t\, y_{it})]}{1+\exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})}, \,\;y_{it},\;y_{i,t+1}=0,1,
+\end{align}
+而第 $i$ 個試驗對象 $k$ 次試驗結果的聯合機率模型可表示如下:
+\begin{align*}%\label{equ:wcovf}
+    &f(y_{i1},\ldots,y_{ik} \,;\bm{x}) \notag\\
+        &\quad = f(y_{i1};\bm{x}_{i1})f(y_{i2} \,|\, y_{i1}\,;\bm{x}_{i2})f(y_{i3} \,|\, y_{i2}\,;\bm{x}_{i3}) \cdots f(y_{ik} \,|\, y_{i,k-1}\,;\bm{x}_{ik})\notag\\
+        &\quad = f(y_{i1};\bm{x}_{i1}) \;\prod_{t=1}^{k-1}\; f(y_{i,t+1} \,|\, y_{it}\,;\bm{x}_{i,t+1}) \notag\\
+        &\quad =\frac{\exp[y_1(\bm{x}'_{i1} \bm{\beta})]}{1+\exp(\bm{x}'_{i1}\bm{\beta})} \;\prod_{t=1}^{k-1}\; \frac{\exp[y_{i,t+1}(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})]}{1+\exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})},\;\forall t=1,\cdots,k-1\,\mbox{。}
+\end{align*}
+以 $\bm{\theta}_l$ 代表概似函數中所有參數, $\bm{\theta}_l=(\beta_1,\cdots,\beta_p,\gamma_1,\cdots,\gamma_{k-1})'$, 則此隨機樣本之對數概似函數為
+\begin{align}
+ \ell &=\log L(\bm{\theta}_l\,|\,\bm{y}) = \sum_{i=1}^n\, \log L_i(\bm{\theta}_l\,|\,\bm{y}_i)    \notag\\
+      &=\sum_{i=1}^n\, \log \left[f(y_{i1};\bm{x}_{i1}) \;\prod_{t=1}^{k-1}\; f(y_{i,t+1} \,|\, y_{it}\,;\bm{x}_{i,t+1}) \right] \notag\\
+      &=\sum_{i=1}^n\, \left\{ \log f(y_{i1};\bm{x}_{i1}) + \,\sum_{t=1}^{k-1} \, \log f(y_{i,t+1} \,|\, y_{it}\,;\bm{x}_{i,t+1}) \right\} \notag\\
+      &=\sum_{i=1}^n \, \left\{ \log \left(\frac{\exp[y_{i1}(\bm{x}'_{i1}\bm{\beta})]}{1+\exp(\bm{x}'_{i1}\bm{\beta})} \right) + \sum_{t=1}^{k-1} \, \log \left( \frac{\exp[y_{i,t+1}(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})]}{1+\exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})} \right) \right\},
+\end{align}
+
+最後,藉由最大概似估計法估計模型中參數,及費雪訊息矩陣之反矩陣作為參數的共變異數矩陣,並分別以 $\hat{\bm{\theta}}_l$ 及 $\mbox{Cov}(\hat{\bm{\theta}}_l)$ 表示。
+其數學推導過程同前面所述,在此僅列示對數概似函數中各參數一階偏微分結果如下:
+
+\begin{align*}
+    \frac{\partial \ell}{\partial \beta_j} &=\sum_{i=1}^n \,\Bigg [ \frac{y_{i1}\, x_{i1j} + x_{i1j}\,(y_{i1}-1)\exp(\bm{x}'_{i1}\bm{\beta})}{1+\exp(\bm{x}'_{i1}\bm{\beta})} \\
+                                           &\qquad + \sum_{t=1}^{k-1} \frac{y_{i,t+1} \, x_{itj} + x_{itj}\,(y_{i,t+1}-1)\, \exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})}{1+\exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})} \Bigg],\;\; j=1,\ldots,p, \\
+    \frac{\partial \ell}{\partial \gamma_s} &= \frac{\partial}{\partial \gamma_s} \left\{ \sum_{i=1}^n \, \log  \frac{\exp[\,y_{i,s+1}(\bm{x}'_{i,s+1}\bm{\beta} +\gamma_s \, y_{is})\,]}{1+\exp(\bm{x}'_{i,s+1}\bm{\beta} +\gamma_s \, y_{is})} \right\} \\
+                                            &=\sum_{i=1}^n \, \frac{y_{is}\, y_{i,s+1}+ y_{is}\,(y_{i,s+1}-1)\,\exp (\bm{x}'_{i,s+1} \bm{\beta} +\gamma_s \, y_{is})}{1+\exp(\bm{x}'_{i,s+1} \bm{\beta} +\gamma_s \, y_{is})},\;\; s=1,\ldots,k-1,\\
+\end{align*}
+
+\noindent 二階偏微分結果如下:
+\begin{align*}
+    \frac{\partial}{\partial \beta_l}\frac{\partial}{\partial \beta_j} \ell &= - \sum_{i=1}^n \, \left\{ \frac{x_{i1l}\, x_{i1j} \exp(\bm{x}'_{i1}\bm{\beta})}{[1+\exp(\bm{x}'_{i1}\bm{\beta})]^2} + \sum_{t=1}^{k-1} \, \frac{ x_{itl} \, x_{itj} \exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})}{[1+\exp(\bm{x}'_{i,t+1}\bm{\beta} +\gamma_t \, y_{it})]^2} \right\},\\
+             &\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad l, j=1,\ldots,p, \\
+    \frac{\partial}{\partial \beta_j}\frac{\partial}{\partial \gamma_s} \ell &= - \sum_{i=1}^n \,  \frac{x_{i,s+1,j} \, y_{is} \exp (\bm{x}'_{i,s+1}\bm{\beta} +\gamma_s \, y_{is})}{[1+ \exp (\bm{x}'_{i,s+1}\bm{\beta} +\gamma_s \, y_{is})]^2},\; j=1,\ldots,p; s=1,\ldots,k-1, \\
+    \frac{\partial^2 \ell}{\partial \gamma^2_s} &= - \sum_{i=1}^n \, \frac{y^2_{is} \exp (\bm{x}'_{i,s+1}\bm{\beta} +\gamma_s \, y_{is})}{[1+ \exp (\bm{x}'_{i,s+1} \bm{\beta} +\gamma_s \, y_{is})]^2},\;\; s=1,\ldots,k-1\mbox{。}
+\end{align*}
+
+\noindent 在不失一般性假設下, MLE 具有一致性(Consistency)。此外,當 $\mbox{Cov}(\hat{\bm{\theta}}_l)$ 係藉由費雪訊息矩陣的反矩陣估計時,此共變異數估計值為估計誤差的下界(即 Cram\'{e}r-Rao Lower Bound),
+故根據 MLE 近似有效性(Asymptotic Efficiency)性質(Casella $\&$ Berger, 1990),本論文在多變量二元分配假設下所建構之邊際模型,
+其MLE在大樣本假設下近似多變量常態分配,亦即
+    $$\sqrt{n}(\hat{\bm{\theta}}_l - \bm{\theta}_l) \rightarrow \mbox{MVN}[\bm{0},\mbox{Cov}(\hat{\bm{\theta}}_l)]\,\mbox{。} $$
+
+
+%\end{document}
+
+
+
+
+
+
+

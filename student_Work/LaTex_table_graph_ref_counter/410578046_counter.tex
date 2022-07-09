@@ -1,0 +1,192 @@
+\input{preamble}  
+
+
+\title{ \LaTeX{\UD 計數器的應用}}
+\author{{\NC 張馨云}\;\; {\JF 410578046}}
+\date{{\BR \today}} 	
+
+\begin{document}
+\maketitle
+\fontsize{12}{22 pt}\selectfont
+
+\centerline{{\BCF 引言}}
+\setlength{\parindent}{2em} 
+	在閱讀數理相關的文章、書籍、講義，甚或作答考試卷時，常常會看到一些定義公式、範例，題號等等皆以相同的格式呈現，並因不同章節而有計數之分別，為避免手動輸入及維護造成錯誤與麻煩，本文將介紹如何使用\LaTeX 指令計數。
+
+\newpage
+\section{\HC 計數器基本指令}
+\subsection{{\HC \LaTeX 內建計數器}}
+	\LaTeX 有內建幾種計數器以便使用者使用，指令如表\ref{counterx_latex}所示：
+
+\begin{table}[H]
+\centering
+\extrarowheight=4pt
+\caption{\LaTeX 內建計數器}\label{counterx_latex}
+	\begin{tabular}{ll}
+	\hline
+	指令（加上$\backslash$） \quad &  \quad 用途  \\
+	\hline
+	part & 部序號計數器 \\
+	\rowcolor{lavendergray}
+	equation & 公式序號計數器 \\
+	chapter & 章序號計數器 \\
+	\rowcolor{lavendergray}
+	page & 頁碼計數器 \\
+	section & 節序號計數器 \\
+	\rowcolor{lavendergray}
+	footnote & 腳註序號計數器 \\
+	subsection & 小節序號計數器 \\
+	\rowcolor{lavendergray}
+	mpfootnote & 小頁環境中的腳註序號計數器 \\
+	subsubsection & 小小節序號計數器 \\
+	\rowcolor{lavendergray}
+	enumi & 排序列表第1層序號計數器 \\
+	enumii & 排序列表第2層序號計數器\\
+	\rowcolor{lavendergray}
+	enumiii & 排序列表第3層序號計數器 \\
+	enumiv & 排序列表第4層序號計數器 \\
+	\rowcolor{lavendergray}
+	paragraph & 段序號計數器 \\
+	subparagraph & 小段序號計數器 \\
+	\rowcolor{lavendergray}
+	figure & 插圖序號計數器 \\
+	table & 表格序號計數器  \\
+	\hline
+	\end{tabular}
+\end{table}
+
+
+\subsection{{\HC 定義新的計數器}}\label{counter_def}
+	定義新的計數器，需要用到amsthm套件所提中的$\backslash$theroemstyle指令，使用方法如下，詳見表\ref{counter_thmstyle}：\\
+      \indent $\{\backslash$newtheorem$\{$name$\}\{$Printed output$\}$[numberby]\\
+      \indent $\{\backslash$newtheorem$\{$name$\}$[counter]$\{$Printed output$\}$\\
+	\begin{table}[H]
+	\centering
+	\extrarowheight=4pt
+	\caption{theoremstyle說明}\label{counter_thmstyle}
+		\begin{tabular}{ll}
+		\hline
+		選項設置 & 說明 \\
+		\hline
+		\textbf{name} & 定義新計數器的指令。 \\
+		\rowcolor{lavendergray}
+		\textbf{Printed output} & 計數器最終呈現於文章的字樣 \\
+		\textbf{numberby} & 新定義的計數器將以原先已定義的計數器為計數範圍 \\
+		\rowcolor{lavendergray}
+		\textbf{counter} & \tabincell{ll}{counter為已定義之計數器。代表新定義之計數器將\\與其共用相同的計數器，計算數字時會同步累計。} \\
+		\tabincell{ll}{\textbf{$\backslash$begin$\{$name$\}$}\\ \textbf{$\backslash$end$\{$name$\}$}} & 開啟新定義之計數器環境 \\
+		\hline
+		\end{tabular}
+	\end{table}
+
+\subsection{{\HC 直接定義計數之數}}
+	別於\ref{counter_def}所介紹之事先定義再以指令去呈現的計數器，另一種計數器使用方法如表\ref{counter_numb}所示：
+	\begin{table}[H]
+	\centering
+	\extrarowheight=4pt
+	\caption{counter使用說明}\label{counter_numb}
+		\begin{tabular}{ll}
+		\hline
+		指令  & 說明 \\
+		\hline
+		$\backslash$newcounter$\{$name$\}$ & 定義計數器名稱 \\				\rowcolor{lavendergray}
+		$\backslash$setcounter$\{$name$\}\{$數字$\}$ & 設置計數器起始數字，預設為0 \\
+		$\backslash$addtocounter$\{$name$\}\{1\}$ & 第二次使用往上加1 \\
+		\rowcolor{lavendergray}
+		$\backslash$thename & 顯示該計數器的值 \\
+		$\backslash$value$\{$name$\}$ & 調用該計數器之值 \\
+		\hline
+		\end{tabular}
+	\end{table}
+	
+	\indent 使用此方法計數，每一次計數都需要使用$\backslash$addtocounter，相比之下，使用事先定義之計數器指令計數更為簡便。
+
+\section{\HC 計數器實際操作}
+	表\ref{counter_new}定義了幾個新的計數器：
+	\begin{table}[H]
+	\centering
+	\extrarowheight=4pt
+	\caption{定義新的計數器}\label{counter_new}
+		\begin{tabular}{ll}
+		\hline
+		定義 & 說明 \\
+		\hline
+		$\{\backslash$newtheorem$\{$Def$\}\{$Definition$\}$[section]  & 定義Definition \\ 
+		\rowcolor{lavendergray}
+		$\{\backslash$newtheorem$\{$thm$\}\{\{\backslash$HC 定理$\}\}$[section] & 定義 theorem為定理 \\
+		$\{\backslash$newtheorem$\{$lemma$\}$[thm]$\{$Lemma$\}$ & 定義與theorem共用編號的lemma \\
+		\rowcolor{lavendergray}
+		$\{\backslash$newtheorem$\{$ex$\}\{\{\backslash$F Example$\}\}$ & 定義獨立編號的example \\
+		$\{\backslash$newtheorem$\{$EX$\}$[ex]$\{\{\backslash$HC 範例$\}\}$ & 定義與example共用編號的範例 \\
+		\hline
+		\end{tabular} 
+	\end{table}
+
+	\indent 或以有底色之表格，或以\footnote{$\backslash$rule$\{\backslash$textwidth$\}\{$0.2pt$\}$} 上下限之線條，我們常看見，在文章、書籍中，定理、範例等將定義區隔開來，以較明顯的方式呈現給讀者，不妨在以下練習試試：
+
+	\begin{center}
+	\colorbox{lightpink}{\begin{tabular}{p{0.9\textwidth}}
+		\begin{thm}\label{ex_theorem}
+		Let $X$ have the cdf $F(x)$ of the continuous type that is strictly increasing on the support$ a < x < b $.  Then the random variable  $Y$, defined by $Y = F(X)$, has a distribution that is $\mathbf{U}(0,1)$. 
+		\end{thm}
+		\end{tabular}}
+	\end{center}
+
+
+	\noindent \rule{\textwidth}{0.2pt}
+	\begin{Def}\label{ex_Def}
+(Factorization Theorem) \\
+Let $X_1,X_2,\cdots,X_n$ denote random variables with joint pdf or pmf $f(x_1,x_2,\cdots,x_n;\theta)$, which depends on the parameter $\theta$. The statistic $Y =u(X_1,X_2,\cdots,X_n)$ is sufficient for $\theta$ if and only if $f(x_1,x_2,\cdots,x_n;\theta)$= $\varphi[u(x_1,x_2,\cdots,x_n);\theta]h(x_1,x_2,\cdots,x_n)$, where $\varphi$ depends on $x_1,x_2,\cdots,x_n$ only through $u(x_1,\cdots,x_n)$ and $h(x_1,\cdots,x_n)$ does not depend on $\theta$.
+	\end{Def}
+	\noindent \rule{\textwidth}{0.2pt}
+	
+	\begin{center}
+	\colorbox{bananamania}{\begin{tabular}{p{0.9\textwidth}}
+		\begin{ex}\label{ex_ex}
+	Let $X_1,X_2,\cdots, X_n$ be a random sample from an exponential distribution with pdf
+	$$f(x;\theta)=\frac{1}{\theta}e^{-x/\theta}=exp\left[ x(-\frac{1}{\theta})-ln\theta\right], \quad 0 < x < \infty, $$
+	provided that $ 0 < x < \infty$. Here, $K(x)=x$.Thus, $\sum_{i=1}^nX_i$ is sufficient for $\theta$; of courfe,$\bar{X}=\sum_{i=1}^nX_i/n$ is also sufficient.
+		\end{ex}
+		\end{tabular}}
+	\end{center}
+
+	\noindent \rule{\textwidth}{0.2pt}
+	\begin{lemma}\label{ex_lem}
+	(Neyman–Pearson Lemma)\\
+	 Let $X_1,X_2,\cdots,X_n$ be a random sample of size n from a distribution with pdf or pmf $f(x;\theta)$, where $\theta_0$ and $\theta_1$ are two possible values of $\theta$. Denote the joint pdf or pmf of $X_1,X_2,\cdots,X_n$ by the likelihood function $$L(\theta)=L(\theta;x_1,x_2,\cdots,x_n)=f(x_1;\theta)f(x_2;\theta)\cdots f(x_n;\theta).$$ 
+	 If there exist a positive constant $k$ and $a$ subset $C$ of the sample space such that 
+	 	\begin{enumerate}[(a)]
+	 	\item $P[(X_1,X_2,\cdots,X_n) \in C;\theta_0]= \alpha$
+	 	\item $\frac{L(\theta_0)}{L(\theta_1)} \leq k for (X_1,X_2,\cdots,X_n)\in C$, and 
+	 	\item $\frac{L(\theta_0)}{L(\theta_1)}  \geq k for (x_1,x_2,\cdots,x_n)\in C',$ 
+	 	\end{enumerate}
+	then $C$ is a best critical region of size $\alpha$ for testing the simple null hypothesis $H_0: \theta = \theta_0$ against the simple alternative hypothesis $H_1: \theta = \theta_1$.
+	\end{lemma}
+	\noindent \rule{\textwidth}{0.2pt}
+
+		
+	\begin{center}
+	\colorbox{bananamania}{\begin{tabular}{p{0.9\textwidth}}
+		\begin{EX}\label{ex_EX}
+		Let $\bar{X_n}$ denote the mean of a random sample of size n from a distribution that has pdf $f(x)=e^{-x}, 0 < x < \infty$, zero elsewhere.
+		Use $\Delta$ -method to find the limiting distribution of $\sqrt{n}(\sqrt{\bar{X_n}}-1)$.
+		\end{EX}
+		\end{tabular}}
+	\end{center}
+
+
+	因為我們曾經定義Lemma與定理共用計數編號；範例與Example共用計數編號，可以看到Lemma\ref{ex_lem}接續定理\ref{ex_theorem}標號；範例\ref{ex_EX}接續Example\ref{ex_ex}編號。
+
+\section{{\HC 結語與問題}}
+	利用\LaTeX 之計數器能使文章書籍在編輯時更有效率且錯誤率更低，只要事先在preamble檔案中設計好計數器樣式、字型等等運作規則，操作起來比WORD更加方便快速！
+	在引用amsthm套件定義計數器時，可能會因為套件衝突，而產生"! LaTeX Error: Command $\backslash$openbox already defined."之錯誤信息，此時，只要在引用amsthm套件之前，使用$\backslash$let$\backslash$openbox$\backslash$relax，忽略$\backslash$openbox這個指令，就可以成功的引用amsthm套件囉！
+
+
+\nocite{*}
+\bibliographystyle{amsplain}
+\bibliography{reference}
+
+
+
+
+\end{document}

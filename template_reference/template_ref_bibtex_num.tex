@@ -1,0 +1,35 @@
+\input{preamble_CJK}   % 使用自己維護的定義檔
+%\usepackage{natbib}
+%\usepackage[sort&compress,square,comma,authoryear]{natbib}
+%----------------------------------------------------------------------
+% 文章開始
+\title{ {\MB 參考文獻的使用與引用（四）}}		% 使用設定的字型
+\author{{\SM 汪群超}}						% 使用設定的小字體
+\date{{\TT \today }} 							 
+\begin{document}
+\maketitle
+\fontsize{12}{22pt}\selectfont % 設定在本行之後的字型大小與行距。此設定與編輯器有關（與 WORD 上的 pt 大小也不一致）。
+\section{初步觀念}
+參考本文請先參考前文「參考文獻的使用與引用（三）」。本文與前文的差別在使用的 bibliographystyle 不同，所以呈現方式也大不相同（請留意本文後面的文獻表列的樣子也不同於前文。）。前文引用文獻時以「作者「年份」」的方式呈現，本文以數字呈現。\footnote{其實前文引用的 bibliographystyle 也可以指定以數字呈現。在此只是想表達不同 bibliographystyle 的呈現方式而已。}
+
+\section{參考文獻的引用：數字} 
+有些期刊（特別是工程科學期刊）以數字引用期刊，該數字對照後面文獻列表的數字編號，讓讀者容易對照到。當使用數字引用文獻時，文章引用時的描述方式必須跟著改變。通常在本文中要自行輸入作者姓氏，再搭配 $\backslash$cite 指令帶出引用數字。請讀者仔細分辨。
+
+{\T The second class of MVN tests in this package examine the skewness and kurtosis of the data. Two approaches are adopted. One uses the combination of the univariate skewness and kurtosis for all marginals, as proposed by Small \cite{SMALL:1980}, and Doornik and Hassen \cite{DOORNIK:2008}. The other approach considers multivariate skewness and kurtosis proposed by Mardia \cite{MARDIA:1970}.   Foster \cite{FOSTER:1981} and Horswell \cite{HORSWELL:1990} consider the MVN test statistics by Small as "among the most powerful" and "of practical importance,"  while  Mecklin and Mundfrom \cite{MM} consider Mardia's procedures, based on multivariate kurtosis, as among the commonly used tests of MVN.  Mardia's procedures are considered as a competitor  in many related studies.
+In particular, the omnibus test by  Doornik and Hassen \cite{DOORNIK:2008} is widely cited in economics and business journals. Section 3 introduces these procedures, and explain how they are implemented in the \textbf{TWVN} software package (Wang and Hwang \cite{WH}). Comprehensive  comparisons between these two types of tests were conducted by Horswell and Looney \cite{HORSWELL:1992}.}
+
+\section{製作方式}
+與前文同。
+
+\bibliographystyle{gSCS}		% not compatible with \usepackage{natbib}
+%\bibliographystyle{jss}
+%\bibliographystyle{amsplain}
+%\bibliographystyle{plain}
+%\bibliographystyle{plainnat}
+%\bibliographystyle{abbrvnat}
+%\bibliographystyle{unsrtnat}
+
+
+\bibliography{WANG_ref}
+
+\end{document}

@@ -1,0 +1,54 @@
+\input{preamble_CJK}   % 使用自己維護的定義檔
+%--------------------------------------------------------
+% 文章開始
+\title{ {\MB 參考文獻的呈現與引用（二）}}		% 使用設定的字型
+\author{{\SM 汪群超}}						% 使用設定的小字體
+\date{{\TT \today }} 							 
+\begin{document}
+\maketitle
+\fontsize{12}{22pt}\selectfont 
+\section{初步觀念}
+參考文獻的引用分兩部分：一、內文的引用方式與呈現，二、參考文獻的排序呈現。不管是哪一部分都沒有統一的標準，隨期刊書籍自訂規範。在   \LaTeX 裡，這些規範表現在 bibliography style 所引用的 bst 檔。這些檔案有些是公開的，可以直接引用，譬如，美國數學學會的 amsplain.bst、abbrvnat.bst 或 unsrtnat.bst。有些需要下載，如統計計算與模擬期刊（Journal of Statistical Computation and Simulation）的 gSCS.bst 檔（如附檔）、統計軟體期刊（Journal of Statistical Software）的 jss.bst 檔（如附檔）。文獻規範檔（bibliography style）一方面用來呈現不同刊物的需求與特色，一方面也能減輕寫作者的負擔，無需為符合不同刊物的規定，撰寫不同格式的參考文獻。
+
+當引用的文獻不多，也不是經常寫參考文獻，可以考慮本文的做法，比前一篇的直白方法高明一點點，且與數學式、表、圖的標號與參照方式相同。
+
+\section{參考文獻的引用}
+The second class of MVN tests in this package examine the skewness and kurtosis of the data. Two approaches are adopted. One uses the combination of the univariate skewness and kurtosis for all marginals, as proposed by Small \cite{SMALL:1980}, and Doornik and Hassen \cite{DOORNIK:2008}. The other approach considers multivariate skewness and kurtosis proposed by Mardia \cite{MARDIA:1970}.   Foster \cite{FOSTER:1981} and Horswell \cite{HORSWELL:1990} consider the MVN test statistics by Small as "among the most powerful" and "of practical importance,"  while  Mecklin and Mundfrom \cite{MM} consider Mardia's procedures, based on multivariate kurtosis, as among the commonly used tests of MVN.  Mardia's procedures are considered as a competitor  in many related studies.
+In particular, the omnibus test by  Doornik and Hassen \cite{DOORNIK:2008} is widely cited in economics and business journals. Section 3 introduces these procedures, and explain how they are implemented in the \textbf{TWVN}  software package \cite{WH}. Comprehensive  comparisons between these two types of tests were conducted by Horswell and Looney \cite{HORSWELL:1992}.
+
+\section{文獻引用方式}
+這是傳統的 \LaTeX 文獻引用與表列方式，其實與數學式的標號參照方式相同。先在最後面文獻表列處，為每篇文獻放置一個標號，之後便可以在文章中引用（$\backslash$cite），彼此間以編號對照。文章中的引用方式也有不同的做法，有些作者（期刊）喜歡在引用處寫上作者姓氏，再跟隨編號（如前節的做法），也有些期刊只要求置入編號即可（如前節引用的第  [8] 篇文獻），讓讀者自己到後面的參考文獻對照作者與年份。
+
+另有些作者引用文獻時，習慣從 [1] 開始，依序出現編號。此時在後面的參考文獻處，其編號與作者的姓氏排序會不一致，也就是參考文獻的列表按文中引用順序排列，不再按字母排序。
+
+\begin{thebibliography}{99} % 99 代表最多 99 個項目
+\bibitem{DOORNIK:2008}
+J. A. Doornik and H. Hassen. An omnibus test for univariate and multivariate normality.
+Oxford Bulletin of Economics and Statistics, 70:927–939, 2008.
+\bibitem{FOSTER:1981}
+K. J. Foster. Tests of Multivariate Normality. PhD thesis, Leeds University, Dept.
+of Statistics, 1981.
+\bibitem{HORSWELL:1990}
+R. L. Horswell. A Monte Carlo Comparison of Tests for Multivariate Normality
+Based on Multivariate Skewness and Kurtosis. PhD thesis, Louisiana State University,
+Dept. of Quantitative Business Analysis, 1990.
+\bibitem{HORSWELL:1992}
+R. L. Horswell and S. W. Looney. A comparison of tests for multivariate normality
+that are based on measures of multivariate skewness and kurtosis. Journal of
+Statistical Computation and Simulation, 42:21–38, 1992.
+\bibitem{MARDIA:1970}
+K. V. Mardia. Measures of multivariate skewness and kurtosis with applications.
+Biometrika, 57:519–530, 1970.
+\bibitem{MM}
+C. Mecklin and D. Mundfrom. A monte carlo comparison of the type i and type ii
+error rates of tests of multivariate normality. Journal of Statistical Computation and
+Simulation, 75:93–107, 2005.
+\bibitem{SMALL:1980}
+N.J.H. Small. Marginal skewness and kurtosis in testing multivariate normality.
+Applied Statistics, 29:85–87, 1980.
+\bibitem{WH}
+C.C Wang, Y. T. Hwang. A new functional statistic for multivariate normality. Statistics
+and Computing. 2011;21(4):501–509.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,181 @@
+%\input{preamble_CJK}
+%-----------------------------------------------------------------------------------------------------------------------
+% 文章開始
+%\title{ \LaTeX{\MB 的數學符號與方程式}}
+%\author{{\SM 汪群超}}
+%\date{{\TT \today}} 	% Activate to display a given date or no date (if empty),
+%         						% otherwise the current date is printed 
+%\begin{document}
+%\maketitle
+%\fontsize{12}{22 pt}\selectfont
+\chapter{\LaTeX 的數學符號與方程式}
+本文將常見的數學符號與方程式以 \LaTeX 編排展示，希望降低使用  \LaTeX 編輯數學式的門檻，快速得到  \LaTeX 為人稱頌的優美數學式。不但為初學者提供編輯的概念與方法，也作為未來的文件編輯的參照樣本。本文內容參考吳聰敏老師專書「\cw{} 排版系統」、\footnote{相關文件可在 \cw{} 官方網站 http://homepage.ntu.edu.tw/$\sim$ntut019/cwtex/cwtex.html 下載。}學生的作品、及作者平日編輯講義時所發現具代表性的數學方程式。在閱讀本文之前，建議先將「\cw{} 排版系統」第 9 章「數學式子」看過一遍，擷取當中對於表達數學式子的觀念，再以本文及所附的原始檔作為練習的參考。\\
+
+\section{數式環境}
+數學式可能以兩種型式出現，一是隨文數式（In-text Formula），是夾在文章中的數學式；譬如，當 $\alpha=2$ 時， $\alpha^3=8$ 。另一種是數學式自成一行或一個段落，我們稱之為展示數式（Display Formula），譬如
+
+$$\int_{-2}^{1} f(x)\;dx$$
+
+輸入數學式時，有兩個地方需要特別注意：
+\begin{itemize}
+\item 隨文數式前後請留一空格，才不會顯得擁擠。
+\item 展示數式上下不須多留一空行， \LaTeX\ 會自行調整間距。
+\end{itemize}\bigskip
+
+\section{符號}
+數字與普通運算符號可直接由鍵盤上鍵入。譬如，下列符號可以直接由鍵盤鍵入：
+
+        \begin{center}
+         $  + \;-\; =\; <\; > \;/ \;:\; !\;\; |\; \;[\;\; ] \;(\; )$\\
+        \end{center}
+要注意的是， 左右大括號 $\{$ $\}$ 在 \LaTeX 中有特殊用途。欲排版左大括號， 需加上反斜線，指令為 $\backslash\{$ ，右大括號之指令為 $\backslash\}$ 。排版展示數式有以下四種方法可以達到目的:
+        \begin{center}
+$\backslash$begin$\{$equation$\}$ ... $\backslash$end$\{$equation$\}$\\
+$\backslash$begin$\{$displaymath$\}$ ... $\backslash$end$\{$displaymath$\}$\\
+$\backslash$[ ... $\backslash$]\\
+\$\$ ... \$\$
+        \end{center}
+除第一種方式外，其餘將不對數學式子進行編號。數式內若要排版文字時，必須置於 $\backslash$mbox 指令內，否則將被視為數學符號（變為斜體），譬如，
+
+$$f(x)=x^2-3x+1 \mbox{, where}  -2 \leq x \leq 2$$
+
+\section{常見的數學式}
+本節列舉一些常見的數學式作為練習與未來使用的參考，每個函數都有其特別之處，請仔細觀察研究。讀者可以依此為基礎，在往後的寫作過程中，逐漸累積更多有特殊型態的或符號的數學式，只要這裡出現過的，參照原使檔一定寫得出來。
+
+\subsection{函數}
+挑幾個機率分配函數做示範：
+
+  \noindent \textbf{Binomial}: 
+  $$f(x)={n\choose x}p^x(1-p)^{1-x}, \;\; x=0,1,2,\cdots,n$$ 
+  \textbf{Poisson}: 
+  $$f(x)=\frac{e^{-\lambda}\lambda^x}{x!}, \;\;  x=0,1,2,\cdots$$ 
+  \textbf{Gamma}: 
+  $$f(x)=\frac{1}{\Gamma(\alpha)\beta^\alpha}x^{\alpha-1}e^{-\frac{x}{\beta}}, \;\; x\geq 0$$
+  \textbf{Normal}: 
+  $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \;\;  -\infty < x < \infty $$
+
+\bigskip
+ 積分式與方程式編號：
+  
+  \begin{equation}\label{gamma}%.................label後的名稱自訂，代表該方程式
+  \int^\infty_0 x^{\alpha-1}e^{-\lambda x} dx = \frac{\Gamma(\alpha)}{\lambda^{\alpha}}
+  \end{equation}
+  
+方程式  (\ref{gamma}) 是廣義 $\Gamma$ 積分。\footnote{這裡利用方程式標籤（label）來引用方程式，編號將自動更新。}\\
+  
+ 開根號（開立方根）：
+  
+  $$f(x)=\sqrt[3]{\frac {\displaystyle 4-x^{3}}{\displaystyle 1+x^{2}}}$$
+  
+ 微分與極限（注意大刮號的使用）：
+  
+  $$f'(x)=\frac{df(x)}{dx}=\lim_{h\rightarrow 0}\left(\frac{f(x+h)-f(x)}{h}\right)$$
+  
+  上下限的使用：
+  
+  $$\int_a^b f(x) dx \approx \lim_{n\rightarrow \infty}\sum_{k=1}^n f(x_k)\triangle x_k$$
+  
+  最佳化問題：
+  
+  $$\max_{\mathbf{u},\mathbf{u}^T\mathbf{u}=1} \mathbf{u}^T\Sigma_X\mathbf{u}$$
+  
+  幾個符號（向量使用粗體來表示）
+
+  $$\mathbf{e}=\mathbf{x}-\mathbf{x}_q=(I-P)\mathbf{x} \in V^{\perp}, \mbox{where}\; V\oplus V^{\perp}=\mathbf{R}^p $$
+
+ 上述的方程式有許多地方需要做「下標」（subscript）與上標（supscript），不管是在積分的上下界或是 $\Sigma$ 的上下範圍，或只是變數的下標與次方、、、等，做法都是用  $\_$ 做下標，用 $\wedge$ 製作上標。當上下標只有一個符號或字母時，可以不加括號，否則必須以括號涵蓋。
+ 
+\subsection{矩陣與行列式}
+矩陣或有規則排列的數學式或組合很常見，以下列舉幾種模式，請特別注意其使用的標籤及一些需要注意的小地方。譬如，\footnote{這裏的項目符號不是預設的 1, 2, ...，改用 a, b...的編號方式。}
+\begin{enumerate}[a)]
+  \item 矩陣的左右括號需各別加上。
+  \item 橫行各項之間是以 $\&$ 區隔。
+  \item 除最後一行外，每行之末則加上換行指令 $\backslash\backslash$。
+  \item 使用 {\A array} 指令時，須加上選項以控制每一直欄內各數字或符號要居中排列、靠左或靠右。
+\end{enumerate}
+
+範例與注意事項：
+\begin{enumerate}
+  \item 左右方框刮號的使用及各直欄的對齊方式：
+        $$ A = \left[
+            \begin{array}{clr}
+                a+b & mnop  & xy \\
+                a+b & pn    	& yz \\
+                b+c & mp    	& xyz
+            \end{array} \right] $$
+
+  \item 左右圓框刮號的使用及各式點狀：
+        $$ A=\left(
+            \begin{array}{cccc}
+                a_{11} 	& a_{12} & \cdots 	& a_{1n}\\
+                a_{21} 	& a_{22} & \cdots 	& a_{2n}\\
+                \vdots 	& \vdots & \ddots	& \vdots\\
+                a_{n1} 	& a_{n2} & \cdots 	& a_{nn}
+            \end{array} \right) $$
+
+  \item 排列整齊的符號：
+        $$ \begin{array}{clr}\\
+            a+b+c   & m+n 	& xy \\
+            a+b     	& p+n 	& yz \\
+            b+c     	& m-n 	& xz
+        \end{array} $$
+
+    \item 等號對齊的函數組合（不編號）
+        \begin{eqnarray*}
+          b_1 &=& d_1+c_1 \\
+          a_2 &=& c_2+e_2
+        \end{eqnarray*}
+
+    \item 等號對齊的函數組合（編號在最後一行）
+        \begin{eqnarray}
+\nonumber b_1 &=& d_1+c_1 \\
+          a_2 &=& c_2+e_2
+        \end{eqnarray}
+
+    \item 使用套件 {\A amsmath} 的指令 {\A align}（控制編號在第一行）
+        \begin{align}
+            b_1 &= d_1+c_1\\
+            a_2 &= c_2+e_2 \notag
+        \end{align}
+
+    \item 兩組數學式分別對齊
+    \begin{align}
+        \alpha_1 &= \beta_1+\gamma_1+\delta_1, &a_1 &= b_1+c_1\\
+        \alpha_2 &= \beta_2+\gamma_2+\delta_2, &a_2 &= b_2+c_2
+    \end{align}
+
+    \item 編號在中間（{\A split} 指令環境）
+        \begin{equation}
+            \begin{split}
+                \alpha_1 &= \beta_1+\gamma_1\\
+                \alpha_2 &= \beta_2+\gamma_2
+            \end{split}
+        \end{equation}
+    \item 只是居中對齊的數學式組（環境指令 {\A gather}）
+        \begin{gather}
+        \alpha_1 + \beta_1\notag\\
+        \alpha_2 + \beta_2 + \gamma_2\notag
+        \end{gather}
+
+    \item 長數學式的表達（注意第二行加號的位置）
+        \begin{align}
+            y  	&= x_1 + x_2 + x_3 \notag\\
+                	&\quad + x_4 + x_5
+        \end{align}
+\end{enumerate}
+
+\subsection{其他}
+列出一些表較少見的數學表達式，用 WORD 很不容易做到。
+  $$X_{n} \stackrel{d}{\longrightarrow} X$$
+  
+  $$\overbrace{X_{1} + \ldots + \underbrace{X_{15} + \ldots + X_{30}}}$$\\
+  \begin{equation*}
+    G = \left\{\begin{array}{l}
+          CLASS\#1 \;\;\mbox{if} \;\; \hat{\beta}^T\bf{x} \leq 0 \\
+          CLASS\#2 \;\;\mbox{if} \;\; \hat{\beta}^T\bf{x} > 0
+        \end{array}\right.
+  \end{equation*}\\
+
+以 {\A equation} 或 {\A align} 排版時，數學式會自動編上號碼。文稿其他地方若要引述某數學式，可先在數學式以 $\backslash${\A label} 指令加上標籤，再使用 $\backslash${\A ref} 指令引述。如此一來若排版文稿須反覆修改，使用 $\backslash${\A label} 與$\backslash${\A ref} 指令可以「自動對焦」不會出錯。
+
+%\end{document}

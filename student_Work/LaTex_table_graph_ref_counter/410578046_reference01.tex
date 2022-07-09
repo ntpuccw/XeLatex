@@ -1,0 +1,143 @@
+\input{preamble}  
+
+\title{ \LaTeX{\UD 參考文獻的引用1}}
+\author{{\NC 張馨云}\;\; {\JF 410578046}}
+\date{{\BR \today}} 	
+
+\begin{document}
+\maketitle
+\fontsize{12}{22 pt}\selectfont
+
+\centerline{{\BCF 引言}}
+\setlength{\parindent}{2em}   
+	寫作文章，報告，論文等等，常常會參考並引用各個文獻中的資料，此時必須標明參考資料之來源。參考文獻眾多，本文旨在介紹參考文獻的使用以期正確並有效率的引用文獻。以下將介紹BibTEX的使用。\\
+\section{{\UD BibTEX的使用}}	
+	透過BibTeX 引入外部文獻檔案：建立一個文獻資料庫，檔案類型為bib，每一筆文獻資料都佔據一個欄位，每一個欄位依其文獻性質而有不同的必要標籤規定，詳見表\ref{ref_rule}。 \\
+	\indent 以$\backslash$bibliography$\{$資料庫的名稱$\}$引用文獻資料庫，以natbib套件所提供的各個樣式編排，常用的參考文獻樣式列於表\ref{ref_style}，使用方法為：\\
+	\indent 以$\backslash$bibliographystyle$\{$參考文獻樣式$\}$ \\
+	\indent 使用BibTEX編排時，不可直接使用「快速編譯器」直接編排，應透過不同編譯器編譯\footnote{第一次引用 bib 檔或是更新 bib 檔時才需要四道程序，如果只是修改文章內容，只需進行一般的編譯。}4次，順序依次為：「XeLaTeX」$\longrightarrow$「BibTeX」$\longrightarrow$「XeLaTeX」$\longrightarrow$「XeLaTeX」。若無法編譯，可刪除資料夾內.aux及.bbl檔案，重新編譯，若仍出現錯誤訊息，則逐檢視並一排除log之中顯示的錯誤。
+	\indent 一般以bibliography引用參考文獻時，reference的標題置左對齊，若希望標題置中，可藉由\footnote{$\backslash$renewcommand$\{\backslash$refname$\}\{\backslash$centering References$\}$} $\backslash$renewcommand指令重新定義其位置。
+	
+	
+	\begin{table}[H]
+	\centering
+ 	\extrarowheight=3pt
+    \caption{標籤與其敘述}\label{ref_lab}
+		\begin{tabular}{ll}
+		\hline
+		標籤 & 敘述 \\
+		\hline
+		address & 出版商的地址(城市或完整地址) \\
+		\rowcolor{lightpink}
+		annote & 註解，用於註解型參考書目樣式的註解 \\
+		author & 作者姓名，英文姓名以"and"；中文姓名以"•"分隔 \\
+		\rowcolor{lightpink}
+		booktitle & 書籍名稱（當所引用的僅僅是其部分內容時） \\
+		chapter & 章號 \\
+		\rowcolor{lightpink}
+		crossref & 交叉引用條目 \\
+		date & 出版日期；導出至BibTeX時為"month"和"year" \\
+		\rowcolor{lightpink}	
+		edition & 書籍的版次；長格式（如"first"或"second"） \\
+		editor  & 編者姓名 \\
+		\rowcolor{lightpink}
+		howpublished & 出版方式（當出版方法不標準） \\
+		journal & 出版當前著作的期刊或雜誌 \\
+		\rowcolor{lightpink}
+		key & \tabincell{l}{當缺少"author"和"editor"時，\\用於指定或者覆蓋條目字母順序的隱藏字段}\\
+		month & 出版月份 \\
+		\rowcolor{lightpink}
+		note & 備註，額外的雜項信息 \\
+		number & 編號，指期刊、雜誌或技術報告的"編號" \\
+		\rowcolor{lightpink}
+		pages & 頁碼，採用逗號或雙連字符來分隔\\
+		publisher & 出版商名稱 \\
+		\rowcolor{lightpink}
+		school & 編寫此學位論文時所在的院校 \\
+		title & 著作名稱 \\ 
+		\rowcolor{lightpink}
+		url &  網址 \\
+		volume &  卷，期刊或多卷本書籍的捲號 \\
+		\rowcolor{lightpink}
+		year & 出版年份 \\
+		\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	\begin{table}[H]
+	\centering
+ 	\extrarowheight=3pt
+    \caption{各類型參考文獻標籤規定}\label{ref_rule}
+		\begin{tabular}{lll}
+		\hline
+		類型 & 敘述 & 必要標籤 \\
+		\hline
+		article & 期刊雜誌論文 & author, title, journal, year \\
+		\rowcolor{lightpink}
+		book &  公開出版的圖書 & author/editor, title, publisher, year \\
+		booklet & 無出版商或作者的圖書 & title \\
+		\rowcolor{lightpink}
+		inbook & 書籍的一部分章節 & \tabincell{l}{author/editor, title, chapter
+									 \\ and/or pages, publisher, year} \\
+		incollection & 書籍中帶獨立標題的章節 & author, title, booktitle, publisher, year \\
+		\rowcolor{lightpink}
+		inproceedings & 會議論文集中的一篇 & author, title, booktitle, year \\
+		manual & 技術文檔 & title \\
+		\rowcolor{lightpink}
+		mastersthesis & 碩士論文 & author, title, school, year \\
+ 		misc & 其他 & none \\
+ 		\rowcolor{lightpink}
+		phdthesis & 博士論文 & author, title, year, school \\
+		techreport & 教育，商業機構的技術報告 & author, title, institution, year\\
+		\rowcolor{lightpink}
+		unpublished & 未出版的論文，圖書 & author, title, note \\
+		\hline
+		\end{tabular}
+	\end{table}
+	
+	
+	\begin{table}[H]
+	\centering
+ 	\extrarowheight=3pt
+    \caption{常用參考文獻樣式}\label{ref_style}
+		\begin{tabular}{ll}
+		\hline
+		樣式 & 敘述 \\
+		\hline
+		plain & 按字母的順序排列，比較次序為作者、年度和標題 \\
+		\rowcolor{lightpink}
+		unsrt & 樣式同plain，按照引用的先後排序 \\
+		alpha & 用作者名首字母+年份後兩位作標號，以字母順序排序 \\		
+		\rowcolor{lightpink}
+		abbrv & 似plain，將月份全拼改為縮寫 \\ 	
+		\hline
+		\end{tabular}
+	\end{table}
+
+	
+\section{{\UD 可能遇到的問題}}	 
+	在撰寫本文，研究參考文獻的使用時，曾遇到過許多問題，在此列出幾個可能遇到的問題與其解決方法：
+\begin{enumerate}[i. ]
+\item I found no $\backslash$citation commands bibtex while reading file article.aux \\
+	可以在bibliography指令之前，置入$\backslash$nocite$\{*\}$
+\item Warning--to sort, need author or key \\
+	可能因為bib資料庫中，參考文獻的標籤不齊全，無法排列順序，這時只要加上key這個標籤即可。
+\item Package natbib Error: Bibliography not compatible with author-year citations. \\
+	修改引用natbib套件為：$\backslash$usepackage[square,sort,comma,numbers]$\{$natbib$\}$，若出現新錯誤："option clash for package natbib."，可能是因為某些期刊的document class已经預設加載了natbib套件，當再次引用套件時，將會導致option衝突。
+\item thebibliography與BibTeX混用可能會造成以下問題： \\
+	The top-level auxiliary file: reference.aux
+	\begin{itemize}
+	\item[•]  I found no $\backslash$citation commands---while reading file reference.aux 
+    \item[•]  I found no $\backslash$bibdata command---while reading file reference.aux 
+    \item[•]  I found no $\backslash$bibstyle command---while reading file reference.aux 
+	\end{itemize}
+ 	(There were 3 error messages)
+\end{enumerate}
+
+
+\nocite{*}
+\bibliographystyle{amsplain}
+\bibliography{practice}
+	
+\end{document}

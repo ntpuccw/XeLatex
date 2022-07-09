@@ -1,0 +1,168 @@
+%\input{preamble_CJK}   % 使用自己維護的定義檔
+%
+%% 以下的設定在測試成功後，可以轉入前置檔（preamble_CJK.tex ）一起管理。
+%\usepackage{amsthm}						% theroemstyle 需要使用的套件
+%\theoremstyle{plain}
+%
+%\newtheorem{de}{Definition}[section]		%definition獨立編號
+%\newtheorem{thm}{{\MB 定理}}[section]		%theorem 獨立編號，取中文名稱並給予不同字型
+%\newtheorem{lemma}[thm]{Lemma}			%lemma 與 theorem 共用編號
+%\newtheorem{ex}{{\E Example}}				%example 獨立編號，不編入小節數字，走流水號。也換個字型。
+%
+%\newtheorem{cor}{Corollary}[section]		%not used here
+%\newtheorem{exercise}{EXERCISE}			%not used here
+%\newtheorem{re}{\emph{Result}}[section]	%not used here
+%\newtheorem{axiom}{AXIOM}				%not used here
+%\renewcommand{\proofname}{證明}			%not used here
+%
+%\newcounter{quiz}						% start a simple and new counter
+%\setcounter{quiz}{1}						% start to count from 1
+%
+%%---------------------------------------------------------
+%% 文章開始
+%\title{ \LaTeX {\MB 定理計數器的使用}}
+%\author{{\MB 汪群超}}
+%\date{{\TT \today}} 			 
+%\begin{document}
+%\maketitle
+%\fontsize{12}{22pt}\selectfont
+\chapter{ \LaTeX {\MB 定理計數器的使用}}
+數理方面的文章或書籍常會使用到定理、定義，或類似需要給予編號的一段文字。這些編號的管理有些是順序排列，有些則隨章節排列，有些一起編號，有些分開。這類的編號都由指令 {\A $\backslash$newtheorem} 處理。  
+
+\section{{\MB 語法}}
+$\backslash$newtheorem 的語法如下
+
+ \begin{center}{\begin{tabular}{l}
+ $\backslash$newtheorem\{env\_name\}\{caption\}[within]\\
+ $\backslash$newtheorem\{env\_name\}[numbered\_like]\{caption\}\\
+ \end{tabular}}\end{center}
+其中
+\begin{itemize}
+\item env\_name：新計數器名稱，通常以簡短文字代表將呈現的文字。譬如， thm 代表 Theorem 字樣。
+\item caption：表示將呈現的文字，一般如 Theorem, Definition, Lemma... 等或使用中文的「定理」「定義」等。
+\item within：代表一個已經存在的計數器，譬如，章 (chapter) 或節 (section)，表示目前的計數器將以該存在的計數器為計數範圍。以章為例，在第二章出現的第一個編號將是 2.1，以節為例，第三章第二節出現的第三個編號將是 3.2.3。
+\item number\_like：一個已經被定義過的計數器名稱，譬如，thm。代表目前定義的計數器將共用相同的計數器。沒有這項參數定義的都是為獨立編號，不予其他計數器共用。
+\end{itemize}
+以下範例舉 Definition, Example, Theorem, Lemma 為例，其中 Definition, Example 獨立編號，而 Theorem 與 Lemma 共同編號。定義方式如下：
+
+ \begin{center}{\begin{tabular}{l}
+ $\backslash$newtheorem\{de\}\{Definition\}[section]\\
+ $\backslash$newtheorem\{ex\}\{$\backslash$emph\{Example\}\}[section]\\
+ $\backslash$newtheorem\{th\}\{Theorem\}[section]\\
+ $\backslash$newtheorem\{lemma\}[th]\{Lemma\}\\
+\end{tabular}}\end{center}
+
+
+\section{{\MB 隨機變數的定義}}
+ \rule{\textwidth}{0.2pt}
+ \begin{de}\footnote{摘自 Casella and Berger 2002, Definition 1.1.1}  %def 1.1.1(Casella & Berger (2002))
+The set, $\mathcal{S}$, of all possible outcomes of a particular experiment is called the \textbf{sample space} for the experiment.\\
+ \rule{\textwidth}{0.2pt}
+\end{de}
+\noindent 通常定義、定理會用特別的方式呈現出來，讓讀者容易一眼看到。本章將定義前後個加上一條橫線來突顯它的位置。另外一種常見的方式請參考本章最後的「定理」與「 lemma」，用表格加上底色做出明顯的框架，裡面採用的表格與底色技術請參考講義「表格製作參考」。
+
+\noindent \rule{\textwidth}{0.2pt}
+\begin{de}\footnote{摘自 Casella and Berger 2002, Definition 1.5.1} %def 1.1.2
+The \textbf{cumulative distribution function}  or CDF of a random variable X, denoted by $F_X(x)$,
+is defined by
+\[F_X(x)=P_X(X \leq x). \mbox{ for all x}, x\in \mathcal{S}.\]
+ \rule{\textwidth}{0.2pt}
+\end{de}
+\noindent 以下的 Example 編號不隨小節計數，係按流水號順序。
+\begin{ex}[指數分配隨機變數的呈現] %
+假設  X 服從指數分配，其 CDF 為 $y=F_X(x)=1-e^{-x}, \forall x>0$，記為 $X\sim F_X(x)=1-e^{-x}$。
+\end{ex}
+
+\begin{ex}[幾何分配隨機變數的呈現] %
+假設 X 服從幾何分配，其 CDF 為 $y=F_X(x)=1-(1-p)^k$，其中 $k=[x]\in \mathcal{N}$，記為 $X\sim F_X(x)=1-(1-p)^x$。此函數又稱為階梯函數（step function）。
+\end{ex}
+
+
+\section{{\MB 離散型隨機變數}}
+\noindent \rule{\textwidth}{0.2pt}
+\begin{de}\footnote{摘自 Casella and Berger 2002, Definition 1.6.1} %def 1.6.1
+The \textbf{probability massfunction} (\textbf{pmf}) of a discrete random variable $X$ is given by
+\[f_X(x)=P(X=x) \mbox{ for all } x.\]
+\noindent \rule{\textwidth}{0.2pt}
+\end{de}
+\bigskip
+ 
+\begin{ex}[Geometric probabilities] %ex 1.6.2
+For the \textbf{geometric distributio}n of Example 1.1.2, we have the \textbf{pmf}
+\[f_X(x)=P(X=x)=\left\{\begin{array}{ll} p(1-p)^{x-1}  & \mbox{ for } x=1, 2, \cdots \\
+                                              0        & \mbox{ otherwise } \\ \end{array}\right.\]
+\end{ex}
+\bigskip
+\noindent \rule{\textwidth}{0.2pt}
+\begin{de}\footnote{摘自 Casella and Berger 2002, Definition 1.6.1}  %def 1.6.3
+The \textbf{probability density function} or PDF, $f_X(x)$, of a continuous random variable $X$ is the function that
+satisfies
+\[F_X(x)=\int_{-\infty}^x f_X(t)dt \mbox{ for all } x.\]
+\noindent \rule{\textwidth}{0.2pt}
+\end{de}
+\bigskip
+
+\begin{ex}[Exponential probabilities] %ex 1.6.4
+For the exponential distribution of the previous Example we have
+\[F_X(x)=1-e^{-x}\]
+and, hence,
+\[f_X(x)=\frac{d}{dx}F_X(x)=e^{-x}.\]
+\end{ex}
+\bigskip
+
+\noindent \rule{\textwidth}{0.2pt}
+\begin{de}\footnote{摘自 Casella and Berger 2002, Definition 4.5.10}   %def 4.5.10
+Let $-\infty<\mu_X<\infty$, $-\infty<\mu_Y<\infty$, $0<\sigma_X$, $0<\sigma_Y$, and
+$-1<\rho<1$ be five real numbers.  The bivariate normal pdf with means $\mu_X$ and $\mu_Y$,
+variances $\sigma_X^2$ and $\sigma_Y^2$, and correlation $\rho$ is the bivariate pdf given by
+\begin{eqnarray*}
+f(x,y)&=&\left( 2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}\right)^{-1}\\
+      && \times\exp\left(-\frac{1}{2(1-\rho^2)}\left(\left(\frac{x-\mu_x}{\sigma_X}\right)^2\right.\right.\\
+      && \left.\left.-2\rho\left(\frac{x-\mu_x}{\sigma_X}\right)\left(\frac{y-\mu_y}{\sigma_Y}\right)
+      +\left(\frac{y-\mu_y}{\sigma_Y}\right)^2 \right)\right)
+\end{eqnarray*}
+for $-\infty<x<\infty$ and $-\infty<y<\infty$.\\
+\noindent \rule{\textwidth}{0.2pt}
+\end{de}
+
+\begin{ex}[{\C Bivariate Normal}] %ex 1.6.2
+二維常態參數 $\mu_X=10, \mu_Y=20, \sigma_X=1, \sigma_Y=2, \rho=0.6$ 其分配函數為
+\begin{equation*}
+f(x,y)=\frac{1}{3.2\pi}\exp\left[-\frac{1}{1.28}\left((\frac{x-10}{1})^2
+       -1.2(\frac{x-10}{1})(\frac{y-20}{2})+(\frac{y-20}{2})^2 \right)\right]
+\end{equation*}
+\end{ex}
+\bigskip
+\begin{center}\colorbox{slight}{\begin{tabular}{p{0.9\textwidth}}
+\begin{thm}\label{demo_ref}\footnote{摘自 Casella and Berger 2002, Theorem 5.3.1} %theorem 5.3.1
+Let $X_1, \cdots, X_n$ be a random sample from a $N(\mu, \sigma^2)$ distribution, and let
+$\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$ and $S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2$.  Then
+\begin{itemize}
+\item[a.] $\bar{X}$ and $S^2$ are independent random variables,
+\item[b.] $\bar{X}$ has a $N(\mu, \sigma^2/n)$ distribution,
+\item[c.] $(n-1)S^2/\sigma^2$ has a chi squared distribution with $n-1$ degrees of freedom.
+\end{itemize}
+\end{thm}
+ \end{tabular}}\end{center}
+\bigskip
+
+定理 \ref{demo_ref} 展示兩件事，其一是加入標號的引用（$\backslash$label）與此處的參照對應，其二是自訂的項目符號（\textit{a. b. c.}）。接著是個 lemma ，其編號隨著定理續編。
+\begin{center}\colorbox{slight}{\begin{tabular}{p{0.9\textwidth}}
+\begin{lemma}. Let $a_1,a_2,\cdots$ be a sequence of numbers converging to $a$, that is, $\lim_{n\rightarrow \infty} a_n=a$. Then
+$$\lim_{n\rightarrow \infty} (1+\frac{a_n}{n})^n=e^n.$$
+\end{lemma}
+ \end{tabular}}\end{center}
+
+\section{練習題}
+利用上課時間完成以下兩個練習，順便展示簡易型計數器（newcounter）的使用。
+
+\rule{\textwidth}{0.2pt}
+\thequiz \;\;對本文所使用到的計數器，分別再多加一個（或以上）範例，方能確定可以掌握這個技術。\\
+\rule{\textwidth}{0.2pt}
+\addtocounter{quiz}{1} 		% 指定計數器 quiz 加 1
+\thequiz \;\;新增一個計數器，並在適當位置加入計數的範例。\\
+\rule{\textwidth}{0.2pt}
+\addtocounter{quiz}{1} 		% 指定計數器 quiz 加 1
+\thequiz \;\;為前一節的定理與 Lemma 的方框換顏色。\\
+\rule{\textwidth}{0.2pt}
+%\end{document}

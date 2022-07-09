@@ -1,0 +1,161 @@
+% !TEX TS-program = xelatex								
+% !TEX encoding = UTF-8
+
+\documentclass[12pt, a4paper]{article} 		
+\usepackage{fontspec} 				% Font selection for XeLaTeX; see fontspec.pdf for documentation. 
+%\usepackage[BoldFont, SlantFont]{xeCJK}% 中文使用 XeCJK，並模擬粗體與斜體（即可以用 \textbf{ } \textit{ }）
+\usepackage{xeCJK}							% 中文使用 XeCJK，但利用 \setCJKmainfont 定義粗體與斜體的字型
+\defaultfontfeatures{Mapping=tex-text} 		% to support TeX conventions like ``---''
+\usepackage{xunicode} 						% Unicode support for LaTeX character names (accents, European chars, etc)
+\usepackage{xltxtra} 						% Extra customizations for XeLaTeX
+
+
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+%\usepackage{geometry} % See geometry.pdf to learn the layout options. There are lots.
+\usepackage[left=1.5in,right=1in,top=1in,bottom=1in]{geometry} %設定頁面的四個邊界
+%---------------------------------------------------
+ %防止Package reports “command already defined”出現
+%\usepackage{amsmath, amssymb}
+\usepackage{savesym}    
+\usepackage{amsmath}
+\savesymbol{iint}
+\usepackage{txfonts}
+\restoresymbol{TXF}{iint}  
+%--------------------------------------------------
+\usepackage{enumerate}
+
+\usepackage{bm} %對希臘字母加粗
+
+%-----------------------------------------------------------------------------------------------------------------------
+%  主字型設定
+\setCJKmainfont								% 設定中文內文字型
+	[
+		BoldFont=cwTeX Q Hei Bold			% 定義粗體的字型（依使用的電腦安裝的字型而定）
+	]
+%	{cwTeX Q Ming Medium} 					% 設定中文內文字型
+	{新細明體}	
+\setmainfont{Times New Roman}				% 設定英文內文字型
+\setsansfont{Arial}							% used with {\sffamily ...}
+%\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans}
+\setmonofont{Courier New}					% used with {\ttfamily ...}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+% 其他字型（隨使用的電腦安裝的字型不同，用註解的方式調整（打開或關閉））
+% 英文字型
+\newfontfamily{\C}{Cambria}					% 套用在內文中所有的英文字母
+\newfontfamily{\A}{Arial}
+\newfontfamily{\sC}[Scale=0.9]{Cambria}
+\newfontfamily{\TNR}{Times New Roman}
+\newfontfamily{\TN}[Scale=0.8]{Times New Roman}
+\newfontfamily{\F}{Forte}
+\newfontfamily{\JF}{JackeyFont}
+\newfontfamily{\BR}{Bunny Rabbits}
+\newfontfamily{\SF}{SanafonMaru}
+% 中文字型
+\newCJKfontfamily{\MJH}{微軟正黑體}			
+\newCJKfontfamily{\sMLU}[Scale=0.8]{新細明體}	  
+\newCJKfontfamily{\BK}{標楷體}    
+\newCJKfontfamily{\UD}{UD Digi Kyokasho NP-B} 
+\newCJKfontfamily{\BM}{BugMaruGothic} 
+\newCJKfontfamily{\pig}{pigmo-00}
+\newCJKfontfamily{\HC}{華康兒風體W4}
+\newCJKfontfamily{\NC}{Nagurigaki Crayon}
+\newCJKfontfamily{\OY}{onryou}
+% 以下為自行安裝的字型：CwTex 組合
+\newCJKfontfamily{\CF}{cwTeX Q Fangsong Medium}		% CwTex 仿宋體
+\newCJKfontfamily{\BCF}[Scale=2.0]{cwTeX Q Fangsong Medium}
+\newCJKfontfamily{\CB}{cwTeX Q Hei Bold}			% CwTex 粗黑體
+\newCJKfontfamily{\CK}{cwTeX Q Kai Medium}   		% CwTex 楷體
+\newCJKfontfamily{\CM}{cwTeX Q Ming Medium}			% CwTex 明體
+\newCJKfontfamily{\CR}{cwTeX Q Yuan Medium}			% CwTex 圓體
+%-----------------------------------------------------------------------------------------------------------------------
+\XeTeXlinebreaklocale "zh"                  		%這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     				%這兩行一定要加，中文才能自動換行
+%-----------------------------------------------------------------------------------------------------------------------
+\newcommand{\cw}{\texttt{cw}\kern-.6pt\TeX}			% 這是 cwTex 的 logo 文字
+\renewcommand{\tablename}{表}						% 改變表格標號文字為中文的「表」（預設為 Table）
+\renewcommand{\figurename}{圖}						% 改變圖片標號文字為中文的「圖」（預設為 Figure）
+
+
+
+%計數器---------------------------------------------------------------------------------------------------------
+\let\openbox\relax   %避免! LaTeX Error: Command \openbox already defined. 
+\usepackage{amsthm} % theroemstyle 需要使用的套件
+
+\newtheorem{Def}{Definition}[section]		%definition獨立編號
+\newtheorem{thm}{{\HC 定理}}[section]		%theorem 獨立編號，取中文名稱並給予不同字型
+\newtheorem{lemma}[thm]{Lemma}				%lemma 與 theorem 共用編號
+\newtheorem{ex}{{\F Example}}				%example 獨立編號，不編入小節數字，走流水號。也換個字型。
+\newtheorem{EX}[ex]{{\HC 範例}} 				%定義與example共用編號的範例
+
+
+%設定表格-------------------------------------------------------------------------------------------------------
+\usepackage{array} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{dcolumn}   %用以對齊小數點 
+\usepackage{graphicx}  %用以旋轉
+\usepackage{diagbox} %製作斜線表頭 
+%縮放
+\newcommand{\bpara}[4]{ % #1 x; #2 y; #3 angle; #4 height
+\begin{picture}(0,0)%
+\setlength{\unitlength}{1pt}%
+\put(#1,#2){\rotatebox{#3}{\raisebox{0mm}[0mm][0mm]{%
+\makebox[0mm]{$\left.\rule{0mm}{#4pt}\right\}$}}}}%
+\end{picture}}		
+
+%表格內折行
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}  
+		%用法：\tabincell{clr}{第一行\\第二行} 
+
+%設定圖片-------------------------------------------------------------------------------------------------------
+\usepackage{graphicx}		 	%插入圖片的套件
+\usepackage{float} 				%設置圖片浮動位置
+\usepackage{subfig} 			%插入多圖時用子圖顯示
+\usepackage{wrapfig}			%文繞圖
+%\usepackage{subfigure}
+%\usepackage{graphicx, subfig, float} 		% support the \includegraphics command and options
+
+	
+\newcommand{\imgdir}{images/}		%設定圖形所在子目錄
+
+%圖形樣式設計
+\usepackage{picins}
+%要把圖標號與圖形一起旋轉
+\usepackage{blindtext}
+\usepackage{adjustbox}
+
+
+
+%設定顏色-------------------------------------------------------------------------------------------------------
+\usepackage{color, xcolor}
+\usepackage{colortbl}
+\definecolor{slight}{gray}{0.6}			
+\definecolor{lightpink}{rgb}{1.0, 0.71, 0.76}
+\definecolor{lightskyblue}{rgb}{0.53, 0.81, 0.98}
+\definecolor{lightsalmon}{rgb}{1.0, 0.63, 0.48}
+\definecolor{champagne}{rgb}{0.97, 0.91, 0.81}
+\definecolor{paleblue}{rgb}{0.69, 0.93, 0.93}
+\definecolor{bananamania}{rgb}{0.98, 0.91, 0.71}
+\definecolor{lavendergray}{rgb}{0.77, 0.76, 0.82}
+\definecolor{lightyellow}{rgb}{1.0, 1.0, 0.88}
+%-----------------------------------------------------------------------------------------------------------------------
+%設定縮格(section或subsection底下默認不縮排)
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+
+%置入網頁連結---------------------------------------------------------------------
+\usepackage[colorlinks,linkcolor=black, urlcolor=blue]{hyperref}
+		%用法：\href{網頁連結}，若連結為電子郵件：\href{mailto；電子郵件}
+		
+%參考資料樣式----------------------------------------------------------------------------------------------------
+%\usepackage{natbib}
+%\usepackage[sort&compress,square,comma,authoryear]{natbib}		
+		
+%-----------------------------------------------------------------------------------------------------------------------
+%更改章節編號字體
+%\usepackage{titlesec}
+%\newfontfamily\sectionNC{Nagurigaki Crayon}
+%\newfontfamily\subsectionLBP{Local BaseBall Park}
+%\titleformat*{\section}{sectionNC}
+%\titleformat*{\subsection}{sectionLBP}
