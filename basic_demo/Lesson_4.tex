@@ -1,0 +1,47 @@
+\documentclass[12pt, a4paper]{article} 	
+\usepackage{xeCJK}						% 中文使用 XeCJK，但利用 \setCJKmainfont 定義字型
+\usepackage{xltxtra} 					% Extra customizations for XeLaTeX
+\setCJKmainfont{新細明體}					% 設定中文內文字型(Win)
+%\setCJKmainfont{宋體-繁}					% 設定中文內文字型(Mac)
+
+\setmainfont{Times New Roman}			% 設定英文內文字型
+\setsansfont{Tahoma}					% 英文無襯袖字體（預設為 Arial）
+\setCJKsansfont{微軟正黑體}				% 中文無襯袖字體(Win)
+%\setCJKsansfont{黑體-繁}					% 中文無襯袖字體(Mac)
+\setmonofont{Courier New}				% 英文等寬字體
+\setCJKmonofont{微軟正黑體}				% 中文等寬字體(Win)
+%\setCJKmonofont{黑體-繁}					% 中文等寬字體(Mac)
+
+% 設定其他字型：中英文不同  ------------------------------------------
+\newfontfamily{\A}{Arial}									
+\newfontfamily{\C}[Scale=0.9]{Cambria}
+\newCJKfontfamily{\MB}{微軟正黑體}			% 適用在 Win
+%\newCJKfontfamily{\MB}{黑體-繁}				% 適用在 Mac
+\newCJKfontfamily{\SM}[Scale=0.8]{新細明體}% 縮小版新細明體(Win)
+%\newCJKfontfamily{\SM}[Scale=0.8]{宋體-繁}% 縮小版新細明體(Mac)
+%-------這兩行一定要加，中文才能自動換行--------------------------------
+\XeTeXlinebreaklocale "zh"                  
+\XeTeXlinebreakskip = 0pt plus 1pt     
+%-------------------------------------------------------------------
+\usepackage[parfill]{parskip} 			% 控制第一行不縮排
+
+\title{{\MB 一些中英文基本字型與套件的使用}}	% 使用設定的字型
+\author{{\SM 汪群超}}						% 使用設定的小字體
+\date{{\C \today} } 					% Activate to display a given date or no date (if empty)
+         									
+\begin{document}
+\maketitle
+\fontsize{12}{22pt}\selectfont % 設定在本行之後的字型大小與行距。此設定與 WORD 上的 pt 大小不一致
+
+使用設定的英文內文字體：\\
+\textnormal{Normal text in Times New Roman font}\\
+\textbf{Bold text in Times New Roman font}\\
+\textit{Italic text in Times New Roman font}
+      
+\textsf{使用設定的「無襯線」字體}：\\
+\textsf{Sans-serif text in Tahoma font}
+
+\texttt{使用設定的「等寬」字體：}\\
+\texttt{Monospace text in Courier New font}
+
+\end{document}

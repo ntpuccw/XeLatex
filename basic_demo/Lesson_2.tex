@@ -1,0 +1,49 @@
+\documentclass[12pt, a4paper]{article} 	
+\usepackage{xltxtra} 			% Extra customizations for XeLaTeX
+\setmainfont[Mapping=tex-text]{細明體}		% Win 內文預設字型
+%\setmainfont[Mapping=tex-text]{宋體-繁}	% Mac 內文預設字型 
+
+% 設定其他字型 ---------------------------------
+\newfontfamily{\A}{Arial}									
+\newfontfamily{\T}{Times New Roman} 
+\newfontfamily{\MB}{微軟正黑體}  	% 設定新字型（Win）
+%\newfontfamily{\MB}{黑體-繁}  	% 設定新字型（Mac）
+
+%-------這兩行一定要加，中文才能自動換行-----------
+\XeTeXlinebreaklocale "zh"                  
+\XeTeXlinebreakskip = 0pt plus 1pt    
+ 
+%---------------------------------------------
+\title{ \XeLaTeX 的多國語系與多種字型}		
+\author{汪群超}						 	
+\date{\today } 
+         										 
+\begin{document}
+\maketitle
+\fontsize{12}{22pt}\selectfont % 設定在本行之後的字型大小與行距。此設定與 WORD 上的 pt 大小不一致。
+
+示範中文：暑假即將來臨，同學和家長都開始計劃如何有效地利用這一段寶貴的假期。也一定有不少家長希望能在這一段時間為孩子加強英文的能力。尚未讓孩子開始學習英文的父母，則想在這段期間內為孩子奠定良好的基礎。本人也曾經面臨小孩學習英文的一些問題。目前問題似乎已經不復存在，故想把小孩習得英文的經驗提供給大家參考。
+
+\section{其他語系}
+以下小節示範英文、簡體中文及日本。代表 \XeTeX 支援 unicode 不同語系字型的能力。
+\subsection{English}
+The test statistics of assessing multivariate normality based on Roy's union-intersection principle (Roy,Some Aspects of Multivariate Analysis, Wiley, New York, 1953) are generalizations of univariate normality, and areformed as the optimal value of a nonlinear multivariate function. Due to the difficulty of solving multivariate optimization problems, researchers have proposed various approximations.
+
+\subsection{简体中文}
+每个人生来平等，享有相同的地位和权利。\footnote{資料來自維基百科 https://zh.wikipedia.org/zh-tw/XeTeX}
+
+\subsection{日本語}
+すべての人間は自由であり、かつ、尊厳と権利とについて平等である。
+
+\section{其他中英文字型示範}
+\subsection{其他中文字型}
+{\MB 這是微軟正黑體（Windows）或 蘋果專用黑體（Mac）}
+
+\subsection{其他英文字型}
+{\A Arial:}\\
+{\A The test statistics of assessing multivariate normality based on Roy's union-intersection principle.}\\
+
+\noindent {\T Times New Roman:\\}
+{\T The test statistics of assessing multivariate normality based on Roy's union-intersection principle.}
+
+\end{document}
