@@ -7,7 +7,7 @@
   <ul>
     <li>從文件的章節開始（template_basic.tex）</li>
     <li>數學式製作參考（template_math.tex）</li>
-    <li>表格製作參考（template_table.tex）</li>
+    <li>表格製作參考（template_table.tex）下載:<a href = https://www.ctan.org/pkg/excel2latex>Excel2Latex</a></li>
     <li>引入外製圖形參考（template_graph.tex）</li>
   </ul>
   </li>
