@@ -1,0 +1,14 @@
+% Counter
+\usepackage{amsthm}	
+\theoremstyle{plain}
+\newtheorem{de}{Definition}[section]		%definition獨立編號
+\newtheorem{thm}{{\MB 定理}}[section]		%theorem 獨立編號，取中文名稱並給予不同字型
+\newtheorem{lemma}[thm]{Lemma}			%lemma 與 theorem 共用編號
+\newtheorem{ex}{{\E Example}}				%example 獨立編號，不編入小節數字，走流水號。也換個字型。
+\newtheorem{cor}{Corollary}[section]		%not used here
+\newtheorem{exercise}{EXERCISE}			%not used here
+\newtheorem{re}{\emph{Result}}[section]	%not used here
+\newtheorem{axiom}{AXIOM}				%not used here
+\renewcommand{\proofname}{\bf{Proof}}		%not used here
+\newcounter{quiz}						% start a simple and new counter
+\setcounter{quiz}{1}						% start to count from 1

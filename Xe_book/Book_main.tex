@@ -1,5 +1,10 @@
+\documentclass[12pt, a4paper]{book}
 %---置入定義檔 ----------------------------------
-\input{Book_preamble_Book}  									
+\input{preamble_CJK} % the image directory may be changed.		
+\input{preamble_addon_Book}  
+\input{preamble_addon_counter}  	
+	
+				
 \usepackage{wallpaper} %浮水印
 %\CenterWallPaper{0.7}{\imgdir{wall_paper.png}}
 \URCornerWallPaper{0.15}{\imgdir mactexlogox5.png}
@@ -8,7 +13,10 @@
 %                      (3) 在文件最後要印出索引的地方加入 \printondex
 %                      (4) 在文章中欲編入索引的文字後加上 \index{該文字}
 %                      (5) 編譯時加入 makeindex 一至兩次
-\makeindex 						
+\usepackage{makeidx}									% for Indexing
+\makeindex 	
+\usepackage{natbib}
+					
 %----文件開始-------------------------------------
 \begin{document}
 %---封面製作 ------------------------------------
@@ -65,7 +73,8 @@
 %-------Reference--------------------------------------------------------------------------------------------
 %\bibliographystyle{amsplain}
 %\bibliographystyle{plain}
-\bibliographystyle{plainnat}
+%\bibliographystyle{plainnat}
+\bibliographystyle{Chicago}
 %\bibliographystyle{abbrvnat}
 %\bibliographystyle{unsrtnat}
 %\bibliographystyle{apacite}   

@@ -1,22 +1,6 @@
+\documentclass[12pt, a4paper]{article}
 \input{preamble_CJK}   % 使用自己維護的定義檔
-
-% 以下的設定在測試成功後，可以轉入前置檔（preamble_CJK.tex ）一起管理。
-\usepackage{amsthm}						% theroemstyle 需要使用的套件
-\theoremstyle{plain}
-
-\newtheorem{de}{定義}[section]		%definition獨立編號
-\newtheorem{thm}{{\MB 定理}}[section]		%theorem 獨立編號，取中文名稱並給予不同字型
-\newtheorem{lemma}[thm]{Lemma}			%lemma 與 theorem 共用編號
-\newtheorem{ex}{{\E Example}}				%example 獨立編號，不編入小節數字，走流水號。也換個字型。
-
-\newtheorem{cor}{Corollary}[section]		%not used here
-\newtheorem{exercise}{EXERCISE}			%not used here
-\newtheorem{re}{\emph{Result}}[section]	%not used here
-\newtheorem{axiom}{AXIOM}				%not used here
-\renewcommand{\proofname}{證明}			%not used here
-
-\newcounter{quiz}						% start a simple and new counter
-\setcounter{quiz}{1}						% start to count from 1
+\input{preamble_addon_counter} 
 
 %---------------------------------------------------------
 % 文章開始

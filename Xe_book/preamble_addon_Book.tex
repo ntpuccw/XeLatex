@@ -1,0 +1,41 @@
+%\documentclass[12pt, a4paper]{book}
+%--- BOOK 定義檔
+\setlength{\textwidth}{13cm} %設定書面文字寬度
+%--- 定義頁眉頁足 -------------------------------
+\usepackage[sf,small]{titlesec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter .\ #1}{}} %去除章編號前後的字
+\fancyhead[LE]{\thepage \;\; \XeLaTeX 一本書}
+\fancyhead[RO]{\leftmark \;\; \thepage }
+%\rhead{\ctxff 數學與電腦}
+%\cfoot{\thepage}
+\renewcommand{\headrulewidth}{1pt} %頁眉下方的橫線
+
+%  for Long Report or Book
+\renewcommand{\contentsname}{{\MB 目錄}}
+\renewcommand\listfigurename{{\MB 圖目錄}}
+\renewcommand\listtablename{{\MB 表目錄}}
+\renewcommand{\indexname}{{\MB 索引}}
+\renewcommand{\bibname}{{\MB 參考文獻}}
+%-----------------------------------------------------------------------------------------------
+
+\newcommand{\loflabel}{圖} % 圖目錄出現 圖 x.x 的「圖」字
+\newcommand{\lotlabel}{表}  % 表目錄出現 表 x.x 的「表」字
+
+\parindent=0pt
+\setcounter{tocdepth}{0}
+
+%--- 其他定義 ----------------------------------
+% 定義章節標題的字型、大小
+\titleformat{\chapter}[display]{\raggedright\LARGE\MB}{\MB 第\ \thechapter\ 章}{0.2cm}{}
+% \titleformat{\chapter}{\center\LARGE\MB}{\MB 第\ \thechapter\ 章、}{0.2cm}{}
+% \titleformat{\chapter}{\centering\Huge\bfseries}{第\,\thechapter\,章}{1em}{}
+%\titleformat{\chapter}[hang]{\centering\LARGE\sf}{\MB 第~\thesection~章}{0.2cm}{}%控制章的字體
+%\titleformat{\section}[hang]{\Large\sf}{\MB 第~\thesection~節}{0.2cm}{}%控制章的字體
+%\titleformat{\subsection}[hang]{\centering\Large\sf}{\MB 第~\thesubsection~節}{0.2cm}{}%控制節的字體
+\titleformat*{\section}{\normalfont\Large\bfseries\MB}
+\titleformat*{\subsection}{\normalfont\large\bfseries\MB}
+\titleformat*{\subsubsection}{\normalfont\large\bfseries\MB}
+
