@@ -1,0 +1,27 @@
+\documentclass[12pt, a4paper]{article} 
+\input{preamble_CJK}   % 使用自己維護的定義檔
+% 可用於追蹤論文修訂的套件與設定
+\usepackage{changes}
+%\usepackage[final]{changes} %完稿時使用，可保留 added 部分，隱藏 /deleted 部分
+\definechangesauthor[name={AddText}, color=blue]{added}
+\definechangesauthor[name={DeleteText}, color=orange]{deleted}
+%-----------------------------------------------------------------------------------------------------------------------
+% 文章開始
+\title{ \deleted[id=deleted]{\LaTeX 的數學符號與方程式}\added[id=added]{文件追蹤與提醒}}
+\author{{\SM 汪群超}}
+\date{{\TT \today}} 	 
+\begin{document}
+\maketitle
+\fontsize{12}{22 pt}\selectfont
+\added[id=added]{本文展示套件「changes」在文章修訂的追蹤與提醒技術。譬如，文章某些段落或文字被要求修改，除了呈現修改後的文字外，仍需保留原來的文字，以供追蹤、確認修訂的位置。同樣的技術也可以用在多人同時編輯一篇文章的情況，以顏色與署名呈現不同作者的加入的文字。}
+
+本文將常見的數學符號與方程式以 \LaTeX 編排展示，希望降低使用  \LaTeX 編輯數學式的門檻，快速得到  \LaTeX 為人稱頌的優美數學式。不但為初學者提供編輯的概念與方法，也作為未來的文件編輯的參照樣本。本文內容參考吳聰敏老師專書「\cw{} 排版系統」、\footnote{前往 \cw{} 官方網站 \url{http://homepage.ntu.edu.tw/~ntut019/cwtex/cwtex.html} 下載《cwTeX 使用手冊（PDF）》。}學生的作品及作者平日編輯講義時所發現具代表性的數學方程式。\added[id=added]{另外，ChatGPT 也是很好的諮詢管道，利用對話的方式，能很快找到需要的語法。}
+
+\section{數式環境}
+數學式可能以兩種型式出現，一是隨文數式（In-text Formula），是夾在文章段落中的數學式；譬如，當 $\alpha=2$ 時， $\alpha^3=8$ 。另一種是數學式自成一行\deleted[id=deleted]{或一個段落，我們}\added[id=added]{一般}稱之為展示數式（Display Formula），譬如
+
+$$\int_{-2}^{1} f(x)\;dx$$
+
+
+
+\end{document}
